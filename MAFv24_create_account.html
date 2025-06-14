@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Account</title>
+  <style>
+    body {
+      background-color: #cc5500;
+      color: white;
+      font-family: sans-serif;
+      margin: 0;
+      padding-top: 80px;
+    }
+    .banner {
+      background-color: #e7d1b4;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 1000;
+    }
+    .banner-title {
+      color: #cc5500;
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .auth-links {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .auth-links a {
+      color: #cc5500;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    fieldset {
+      border: 2px solid white;
+      padding: 20px;
+    }
+    legend {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 0 10px;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+    .checkbox-container {
+      margin-top: 10px;
+    }
+    .submit-button {
+      background-color: white;
+      color: #cc5500;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 0 auto;
+      display: block;
+      border-radius: 5px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="auth-links">
+      <a href="MAFv24_create_account.html">Create Account</a> | <a href="MAFv24_login.html">Login</a>
+    </div>
+    <div class="banner-title">Winston</div>
+  </div>
+
+  <form class="form-container" onsubmit="submitForm(event)">
+    <fieldset>
+      <legend>Parent Information</legend>
+      <div class="field-grid">
+        <label>Parent's Last Name <input type="text" required></label>
+        <label>Parent's First Name <input type="text" required></label>
+        <label>Parent Email <input type="email" required></label>
+        <label>Parent Username <input type="text" required></label>
+        <label>Parent Password <input type="password" required></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Child Information</legend>
+      <div class="field-grid">
+        <label>Child's Username <input type="text" required></label>
+        <label>Child's Password <input type="password" required></label>
+        <label>Child's Roblox Username <input type="text"></label>
+        <label>Avatar
+          <select id="avatarSelect" required>
+            <option value="🦖 Dinosaur">🦖 Dinosaur</option>
+            <option value="🤖 Robot">🤖 Robot</option>
+            <option value="🏴‍☠️ Pirate">🏴‍☠️ Pirate</option>
+            <option value="👶 Baby">👶 Baby</option>
+            <option value="🐑 Sheep">🐑 Sheep</option>
+            <option value="🐴 Horse">🐴 Horse</option>
+            <option value="🚙 Jeep">🚙 Jeep</option>
+            <option value="👽 Alien">👽 Alien</option>
+            <option value="🛸 UFO">🛸 UFO</option>
+            <option value="⚡ Lightning Bolt">⚡ Lightning Bolt</option>
+            <option value="👻 Ghost">👻 Ghost</option>
+          </select>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Payment Information</legend>
+      <div class="field-grid">
+        <label>Credit Card Number <input type="number" required></label>
+        <label>Expiration Date <input type="text" placeholder="MM/YY" required></label>
+        <label>3-Digit Security Code <input type="number" required></label>
+      </div>
+      <div class="checkbox-container">
+        <label><input type="checkbox" required> Agree to Monthly Subscription</label><br/>
+        <label><input type="checkbox" required> Agree to Robucks Purchase</label>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault();
+      const avatar = document.getElementById("avatarSelect").value;
+      localStorage.setItem("selectedAvatar", avatar);
+      window.location.href = "MAFv24_login.html";
+    }
+  </script>
+</body>
+</html>

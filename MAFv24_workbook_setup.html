@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Workbook Setup</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #cc5500;
+      font-family: sans-serif;
+      color: black;
+      padding-top: 80px;
+    }
+    .banner {
+      background-color: #e7d1b4;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      height: 80px;
+      box-sizing: border-box;
+    }
+    .banner-title {
+      color: #cc5500;
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .auth-links {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .auth-links a {
+      color: #cc5500;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 100px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 30px 40px;
+      text-align: left;
+    }
+    h2 {
+      text-align: center;
+      color: #cc5500;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .problem-types {
+      margin-bottom: 20px;
+    }
+    .problem-types label {
+      display: inline-block;
+      margin-right: 20px;
+      font-weight: normal;
+    }
+    button {
+      background-color: #cc5500;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #b74d00;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="auth-links">
+      <a href="MAFv24_create_account.html">Create Account</a> |
+      <a href="MAFv24_login.html">Login</a>
+    </div>
+    <div class="banner-title">Winston</div>
+  </div>
+
+  <div class="container">
+    <h2>Workbook Setup</h2>
+    <form onsubmit="startWorkbook(event)">
+      <label for="problemCount">Number of Problems:</label>
+      <select id="problemCount">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25" selected>25</option>
+      </select>
+
+      <label>Problem Types:</label>
+      <div class="problem-types">
+        <label><input type="checkbox" value="add" checked> Addition</label>
+        <label><input type="checkbox" value="sub" checked> Subtraction</label>
+        <label><input type="checkbox" value="mul"> Multiplication</label>
+        <label><input type="checkbox" value="div"> Division</label>
+        <label><input type="checkbox" value="poly" checked> Polynomials</label>
+      </div>
+
+      <label for="difficulty">Difficulty Level:</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <button type="submit">Start Workbook</button>
+    </form>
+  </div>
+
+  <script>
+    function startWorkbook(event) {
+      event.preventDefault();
+      const types = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+      const count = document.getElementById("problemCount").value;
+      const difficulty = document.getElementById("difficulty").value;
+      localStorage.setItem("types", JSON.stringify(types));
+      localStorage.setItem("problemCount", count);
+      localStorage.setItem("difficulty", difficulty);
+      window.location.href = "MAFv24_workbook_ui.html";
+    }
+  </script>
+</body>
+</html>
